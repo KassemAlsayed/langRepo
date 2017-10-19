@@ -2,6 +2,7 @@ package com.kass.lang;
 
 import com.kass.lang.domain.Language;
 import com.kass.lang.service.LanguageService;
+import com.kass.lang.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class LangController {
         {
             "name": "Java",
             "icon": "javaIcon",
-            "comment": "this is java comment"
+            "comment": "this is a java comment"
         }
      */
     private static final Logger logger = LoggerFactory.getLogger(LangController.class);
@@ -44,7 +45,7 @@ public class LangController {
                                               @Context HttpServletResponse resposne) {
         logger.info("{} {}", request.getMethod(), request.getRequestURI());
 
-        resposne.setHeader("Access-Control-Allow-Origin", "*");
+        Utils.setHttpHeader(resposne);
 
         return langService.getAllLanguages();
     }
@@ -55,7 +56,7 @@ public class LangController {
                                 @Context HttpServletResponse resposne) {
         logger.info("{} {}", request.getMethod(), request.getRequestURI());
 
-        resposne.setHeader("Access-Control-Allow-Origin", "*");
+        Utils.setHttpHeader(resposne);
 
         return langService.getLanguage(id);
     }
@@ -66,6 +67,8 @@ public class LangController {
                                        @Context HttpServletResponse resposne) {
         logger.info("{} {}", request.getMethod(), request.getRequestURI());
 
+        Utils.setHttpHeader(resposne);
+
         return langService.findByLanguageName(name);
     }
 
@@ -75,9 +78,10 @@ public class LangController {
                                @Context HttpServletResponse resposne) {
         logger.info("{} {}", request.getMethod(), request.getRequestURI());
 
-        resposne.setHeader("Access-Control-Allow-Origin", "*");
+        Utils.setHttpHeader(resposne);
         langService.deleteLanguage(id);
     }
+
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/languages/")
     public void deleteLanguageByName(@RequestParam(value = "name") String name,
@@ -96,7 +100,7 @@ public class LangController {
                                 @Context HttpServletResponse resposne) {
         logger.info("{} {} Lang: {}", request.getMethod(), request.getRequestURI(), lang);
 
-        resposne.setHeader("Access-Control-Allow-Origin", "*");
+        Utils.setHttpHeader(resposne);
 
         langService.addLanguage(lang);
         return langService.getLanguage(lang.getId());
@@ -112,7 +116,7 @@ public class LangController {
                                    @Context HttpServletResponse resposne) {
 
         logger.info("{} {} Lang: {}", request.getMethod(), request.getRequestURI(), lang);
-        resposne.setHeader("Access-Control-Allow-Origin", "*");
+        Utils.setHttpHeader(resposne);
 
         langService.updateLanguage(lang);
         return langService.getLanguage(lang.getId());
