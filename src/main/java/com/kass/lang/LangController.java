@@ -26,6 +26,13 @@ public class LangController {
     // DELETE /languages/?name=cc
     // PUT /languages
 
+    /*
+        {
+            "name": "Java",
+            "icon": "javaIcon",
+            "comment": "this is java comment"
+        }
+     */
     private static final Logger logger = LoggerFactory.getLogger(LangController.class);
 
 
@@ -81,13 +88,6 @@ public class LangController {
         langService.deleteLanguageByName(name);
     }
 
-    /*
-        {
-            "name": "Java",
-            "icon": "javaIcon",
-            "comment": "this is java comment"
-        }
-     */
     @RequestMapping(method = RequestMethod.POST, value = "/languages",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -102,13 +102,6 @@ public class LangController {
         return langService.getLanguage(lang.getId());
     }
 
-    /*
-        {
-            "name": "Java",
-            "icon": "javaIcon",
-            "comment": "this is java comment"
-        }
-     */
     @RequestMapping(
             method = RequestMethod.PUT,
             value = "/languages",
