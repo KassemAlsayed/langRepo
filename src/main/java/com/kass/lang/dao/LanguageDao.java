@@ -17,7 +17,6 @@ public interface LanguageDao extends CrudRepository<Language, Integer> {
     @Query("SELECT l FROM Language l WHERE l.name = (:name)")
     public Language findByLanguageName(@Param("name") String name);
 
-
     @Modifying
     @Transactional
     @Query("delete from Language l where l.name = (:name)")
