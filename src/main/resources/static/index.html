@@ -1,8 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-here is where static html files go main/java/resources/static/
+  <head>
+    <base href="/">
+    <title>Angular Tour of Languages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<body style="background-color:white">
-</body>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Polyfills -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('main.js').catch(function(err){ console.error(err); });
+    </script>
+  <link href="styles.d41d8cd98f00b204e980.bundle.css" rel="stylesheet"/></head>
+
+  <body style="background-color:white">
+    <my-app>...</my-app>
+  <script type="text/javascript" src="inline.00fc32cd68f26ec439ce.bundle.js"></script><script type="text/javascript" src="polyfills.4e28c945e4bccbd6e846.bundle.js"></script><script type="text/javascript" src="vendor.062ff41be95cc52ae15b.bundle.js"></script><script type="text/javascript" src="main.cee911921a1c029d26be.bundle.js"></script></body>
 </html>
