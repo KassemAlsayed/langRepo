@@ -1,6 +1,7 @@
 package com.kass.lang.service;
 
 import com.kass.lang.dao.LanguageDao;
+import com.kass.lang.dao.StreamrDao;
 import com.kass.lang.domain.Language;
 import groovy.lang.Singleton;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class LanguageServiceImpl implements LanguageService{
     @Autowired
     private LanguageDao langDao;
 
+    @Autowired
+    private StreamrDao streamrDao;
+
     @Override
     public Iterable<Language> getAllLanguages() {
         return langDao.findAll();
@@ -26,6 +30,7 @@ public class LanguageServiceImpl implements LanguageService{
     @Override
     public void addLanguage(Language lang){
         langDao.save(lang);
+        streamrDao.sendToStreamr(lang);
     }
 
     @Override
@@ -41,6 +46,7 @@ public class LanguageServiceImpl implements LanguageService{
     @Override
     public void updateLanguage(Language lang) {
         langDao.save(lang);
+        streamrDao.sendToStreamr(lang);
     }
 
     @Override
